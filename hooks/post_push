@@ -12,3 +12,5 @@ docker run -v /etc:/etc $IMAGE_NAME tgbot \
 
 echo "------ HOOK END - POST_PUSH -------"
 
+# trigger another build, causing an infinite autobuild loop
+curl -X POST 'https://cloud.docker.com/api/build/v1/source/d8d23bee-4df4-4be9-bed7-44230569ba60/trigger/30d292b9-f588-470f-8c09-ddbe606cda3a/call/'
