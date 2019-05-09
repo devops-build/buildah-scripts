@@ -163,16 +163,9 @@ FROM alpine:3.9
 # Add gosu for easy step-down from root
 ARG GOSU_VERSION=1.11
 RUN set -eux; \
-	apk add --no-cache gnupg; \
 	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64"; \
-	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64.asc"; \
-	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
-	gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
-	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
-	gosu nobody true; \
-	apk del --purge gnupg
+	gosu nobody true
 # Install iptables & new-uidmap
 RUN apk add --no-cache ca-certificates iptables ip6tables shadow-uidmap
 # Copy binaries from other images
