@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+docker tag $IMAGE_NAME $DOCKER_REPO:$SOURCE_COMMIT
+docker push $DOCKER_REPO:$SOURCE_COMMIT
+
+docker run -v /etc:/etc $IMAGE_NAME tgbot \
+  "image pushed; build log:" \
+  "https://cloud.docker.com/repository/registry-1.docker.io/buildah/buildah/builds" \
+  "" \
+  "Give it a try!" \
+  "docker run buildah/buildah:$SOURCE_COMMIT"
+
+echo "------ HOOK END - POST_PUSH -------"
+
