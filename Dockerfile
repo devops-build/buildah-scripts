@@ -13,7 +13,7 @@ RUN set -eux; \
 
 # Golang build against musl libc (since libselinux is available in alpine >3.8; build like the official golang:alpine3.8 image)
 FROM alpine:3.9 as golang
-ENV GOLANG_VERSION 1.11.5
+ENV GOLANG_VERSION 1.12.5
 # Compile go against musl libc (see https://github.com/docker-library/golang/blob/2e795f515357c575359f0720acaf7f5490f8bcf5/1.11/alpine3.8/Dockerfile)
 RUN set -eux; \
 	mkdir /go; \
