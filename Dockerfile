@@ -152,7 +152,8 @@ RUN go build -ldflags "-extldflags '-static'" -tags "exclude_graphdriver_devicem
 
 # buildah
 FROM podmanbuildbase AS buildah
-ARG BUILDAH_VERSION=v1.6
+#ARG BUILDAH_VERSION=v1.6
+ARG BUILDAH_VERSION=v1.8.2
 RUN apk add --no-cache go-md2man
 RUN git clone --branch ${BUILDAH_VERSION} https://github.com/containers/buildah $GOPATH/src/github.com/containers/buildah
 WORKDIR $GOPATH/src/github.com/containers/buildah
